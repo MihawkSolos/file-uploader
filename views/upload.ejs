@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload File</title>
+</head>
+<body>
+    <h1>Upload a File</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <label for="file">Choose a file:</label>
+      <input type="file" id="file" name="file" required />
+      <button type="submit">Upload</button>
+    </form>
+    
+    <% if (userFiles && userFiles.length > 0) { %>
+        <h2>Your Uploaded Files:</h2>
+        <ul>
+            <% userFiles.forEach(file => { %>
+                <li>
+                    <a href="/uploads/<%= file.filename %>" target="_blank"><%= file.filename %></a>
+                    <!-- Display the file name as a clickable link -->
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>You have not uploaded any files yet.</p>
+    <% } %>
+
+    <a href="/">Go Back</a>
+</body>
+</html>

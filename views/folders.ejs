@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Folders</title>
+</head>
+<body>
+    <h1>Your Folders</h1>
+    <form action="/folders" method="POST">
+        <input type="text" name="name" placeholder="New Folder Name" required />
+        <button type="submit">Create Folder</button>
+    </form>
+
+    <% if (folders && folders.length > 0) { %>
+        <ul>
+            <% folders.forEach(folder => { %>
+                <li>
+                    <strong><%= folder.name %></strong>
+                    <form action="/folders/<%= folder.id %>" method="POST">
+                        <input type="hidden" name="_method" value="PUT"> <!-- Overrides POST to PUT -->
+                        <input type="text" name="name" placeholder="New Folder Name" required>
+                        <button type="submit">Rename</button>
+                    </form>
+                    
+                    <form action="/folders/<%= folder.id %>" method="POST">
+                        <input type="hidden" name="_method" value="DELETE"> <!-- Overrides POST to DELETE -->
+                        <button type="submit">Delete</button>
+                    </form>
+                    
+
+                    <ul>
+                        <% folder.files.forEach(file => { %>
+                            <li>
+                                <a href="<%= file.filepath %>" target="_blank"><%= file.filename %></a>
+                            </li>
+                        <% }); %>
+                    </ul>
+
+                    <form action="/folders/<%= folder.id %>/upload" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="file" required />
+                        <button type="submit">Upload File</button>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No folders created yet.</p>
+    <% } %>
+
+    <a href="/">Go Back</a>
+</body>
+</html>

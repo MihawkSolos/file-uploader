@@ -9,3 +9,11 @@ npm install bcryptjs
 3) check to make sure my table & columns in database match what im using in POSTsign-up controller
 4) " " same as step 3 but with passport.js
 5) 
+
+prisma 
+1) npm install prisma @prisma/client
+2) npx prisma init
+3) npx prisma migrate dev --name init
+
+multer middleware (uploading files)
+1) npm install multer
