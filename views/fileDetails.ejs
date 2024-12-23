@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Details</title>
+</head>
+<body>
+    <h1>File Details</h1>
+
+    <p><strong>File Name:</strong> <%= file.filename %></p>
+    <p><strong>File Path:</strong> <%= file.filepath %></p>
+    <p><strong>Upload Time:</strong> <%= file.createdAt %></p>
+
+    <a href="<%= file.filepath %>" download="<%= file.filename %>">
+        <button>Download</button>
+    </a>
+
+    <a href="/folders">
+        <button>Back to Folders</button>
+    </a>
+</body>
+</html>

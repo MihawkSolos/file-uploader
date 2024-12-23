@@ -4,19 +4,21 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const path = require('path');
 const multer = require("multer");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("../config/cloudinary");
 
-// Set storage engine for Multer
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "uploads/"); // Set the folder where files should be stored
+
+
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+      folder: "uploads", // Cloudinary folder name
+      format: async (req, file) => "png", // Optional file format
+      public_id: (req, file) => Date.now() + "_" + file.originalname,
     },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
-    }
-});
-
-// Initialize Multer with storage options
-const upload = multer({ storage: storage });
+  });
+  
+  const upload = multer({ storage });
 
 const signUpGet = (req, res) => {
     res.render('sign-up-form'); // sign up page goes here

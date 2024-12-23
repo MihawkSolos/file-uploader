@@ -24,13 +24,14 @@ model User {
 model File {
   id       Int      @id @default(autoincrement())
   filename String
-  filepath String
+  url       String? // Optional for now
+  folderId  Int?    // Optional for now
   userId   Int
-  user     User     @relation(fields: [userId], references: [id])
-  folderId Int?
-  folder   Folder?  @relation(fields: [folderId], references: [id])
-  createdAt DateTime @default(now())
+  Folder   Folder   @relation(fields: [folderId], references: [id])
+  User     User     @relation(fields: [userId], references: [id])
 }
+
+
 
 model Folder {
   id        Int      @id @default(autoincrement())

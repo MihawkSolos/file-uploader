@@ -24,5 +24,7 @@ router.post('/folders', folderController.createFolder); // Create a new folder
 router.put('/folders/:id', folderController.updateFolder); // Update folder name
 router.delete('/folders/:id', folderController.deleteFolder); // Delete a folder
 router.post('/folders/:id/upload', folderController.uploadToFolder); // Upload file to a specific folder
+router.get('/files/:fileId', folderController.getFileDetails); // View file details
+
 
 module.exports = router;

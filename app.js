@@ -11,6 +11,8 @@ const app = express();
 // Serving the uploads folder as static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 // set up the views directory
 app.set("views", path.join(__dirname, "views"));

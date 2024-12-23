@@ -32,6 +32,8 @@
                         <% folder.files.forEach(file => { %>
                             <li>
                                 <a href="<%= file.filepath %>" target="_blank"><%= file.filename %></a>
+                                <!-- Add a link to view file details -->
+                                <a href="/files/<%= file.id %>">View Details</a>
                             </li>
                         <% }); %>
                     </ul>
